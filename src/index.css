@@ -1,13 +1,209 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400&family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,800;1,100;1,200;1,300;1,400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  transition: 0.3s ease;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Colors and Style (Default) */
+:root {
+  --bg-color: #5aab8e;
+  --sidebar-color: #fffdf6;
+  --hover-color: #5aab8e;
+  --input-color: #e9f6cd;
+  --input-text-color: #7d7f7e;
+  --button-color: #ffce5db3;
+  --button-hover-color: #ffce5d;
+  --text-color: #252b29;
+
+  /* Font and Typography */
+
+  --biggest-font-size: 1.875rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.375rem;
+  --h3-font-size: 1.25rem;
+  --h4-font-size: 1.125rem;
+  --h5-font-size: 1rem;
+  --p-font-size: 0.875rem;
+}
+/* Default styles */
+
+html {
+  font-size: 90%;
+}
+
+.icon {
+  font-size: var(--biggest-font-size);
+  color: var(--text-color);
+  margin: 0 1.25rem 0 1rem;
+  cursor: pointer;
+}
+
+.icon_set {
+  font-size: var(--biggest-font-size);
+  color: var(--button-hover-color);
+  margin-left: -2.8rem;
+  margin-right: 1rem;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  align-items: center;
+  gap: 1.875rem;
+  /* 分四等份，前兩等份靠上 */
+  grid-template-rows: auto 0.8fr auto; /* 第二行高度設為自適應，第一行和第三行高度分別設為自適應 */
+}
+
+.grid > *:nth-child(2) {
+  align-self: start; /* 只針對第二行元素做偏上的調整 */
+}
+
+.btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 0.8rem 1rem;
+  background: var(--button-color);
+  color: var(--sidebar-color);
+}
+
+.btn .icon {
+  margin-left: 3rem;
+}
+
+.btn:hover {
+  background: var(--button-hover-color);
+  color: var(--sidebar-color);
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 1rem;
+}
+
+.containerr {
+  position: relative;
+  width: 95vw;
+  height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-color);
+  overflow: hidden;
+  border-radius: 1.25rem;
+  box-shadow: 2px 2px 8px grey;
+}
+
+.mainContent {
+  width: 77%;
+  height: 100%;
+  padding: 2rem;
+  overflow: auto;
+}
+
+.bottom {
+  margin-top: 2rem;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.linkText {
+  font-size: var(--h2-font-size);
+  color: var(--text-color);
+  letter-spacing: 0.3rem;
+  font-weight: 400;
+}
+
+.menuText {
+  font-size: var(--h2-font-size);
+  color: var(--text-color);
+  letter-spacing: 0.3rem;
+}
+
+.noshow {
+  display: none;
+}
+
+.subMenuLists {
+  font-size: var(--h3-font-size);
+  color: var(--text-color);
+  /* 對齊置中 */
+  text-align: match-parent;
+  margin-left: 3rem;
+  line-height: 2rem;
+  /* 與下個link間距縮短 */
+  padding: 0.8rem 0.8rem 0rem 0.8rem;
+  letter-spacing: 0.3rem;
+}
+
+.subMenuLink {
+  color: var(--text-color);
+  transition: 0.3s ease;
+}
+
+.subListItem {
+  padding: 0.5rem;
+}
+
+.salesBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 3px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #e9f6cd;
+  color: #252b29;
+}
+
+tr:hover {
+  background-color: #fffdf6;
+}
+
+.smooth-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
