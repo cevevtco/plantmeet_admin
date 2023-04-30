@@ -9,7 +9,7 @@ const ChangePassword = () => {
       <Header title="密碼變更" />
       <div className="Info w-full max-w-screen-2xl mx-auto mt-10 animate-slideup ">
         <div className="flex justify-center items-center h-[780px] overflow-scroll bg-white rounded-[10px] shadow-md  ">
-          <form className="flex flex-col items-center gap-2 ">
+          <form className="flex flex-col items-center gap-5 ">
             <label
               htmlFor=""
               className="flex justify-center items-center flex-shrink-0"
@@ -26,7 +26,7 @@ const ChangePassword = () => {
               htmlFor=""
               className="flex justify-center items-center flex-shrink-0"
             >
-              <span className="mb-2 w-[90px] text-center">舊密碼：</span>
+              <span className="mb-2 w-[90px] text-center">原密碼：</span>
               <input
                 type="password"
                 className="bg-[#E9F6CD] py-2 px-6 flex rounded-lg w-[300px]"

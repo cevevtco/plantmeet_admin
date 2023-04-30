@@ -23,7 +23,7 @@ import {
 
 const App = () => {
   // 判斷是否在登入頁面
-  const isAuth = false;
+  const isAuth = true;
   return (
     <>
       {/* 如果不是登入頁面，則渲染  Sidebar */}
@@ -36,7 +36,7 @@ const App = () => {
               <Route path="/products" element={<ProductSelect />} />
               <Route path="/products/create" element={<ProductCreate />} />
               <Route path="/class" element={<ClassSelect />} />
-              <Route path="/class/edit" element={<ClassEdit />} />
+              <Route path="/class/edit/:id" element={<ClassEdit />} />
               <Route path="/order" element={<OrderSelect />} />
               <Route path="/order/status" element={<OrderStatus />} />
               <Route path="/coupon" element={<CouponSelect />} />

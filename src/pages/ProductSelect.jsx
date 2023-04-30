@@ -13,9 +13,15 @@ const ProductSelect = () => {
       <Header title="商品管理 → 植感選物" />
       <SelectBar
         navLink="/products/create"
+        type="product"
         addBtn="新增產品"
         filter1="價格篩選"
         filter2="商品種類"
+        option1="多肉植物"
+        option2="瓶中生態"
+        option3="不凋花"
+        option4="DIY材料"
+        option5="限定商品"
       />
       <div className="w-full max-w-screen-2xl mx-auto mt-3 ">
         <div className="productSection sm:justify-start justify-center bg-[#FFFDF6] rounded-[10px] shadow-md py-4 px-10">
@@ -36,7 +42,7 @@ const ProductSelect = () => {
                     </div>
                     <img
                       className="w-full h-full object-cover"
-                      src="https://via.placeholder.com/230x180.png"
+                      src="https://i.imgur.com/LLrjW2W.jpg"
                       alt=""
                     />
                     <div className="absolute top-3 left-3 flex justify-center items-center h-10 w-10 rounded-full bg-white">

@@ -46,7 +46,7 @@ const OrderStatus = () => {
                       </span>
                     </div>
                     <span className="text-white font-semibold w-full pl-7 ">
-                      訂單編號：2023040101
+                      訂單編號：202304010001
                     </span>
                   </div>
                   <form className="flex  justify-center items-center gap-3 ">

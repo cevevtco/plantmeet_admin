@@ -11,7 +11,7 @@ const ClassSelect = () => {
   return (
     <div className="max-w-screen-2xl mx-auto">
       <Header title="商品管理 → 體驗課程" />
-      <SelectBar addBtn="新增課程" filter1="價格篩選" filter2="課程種類" />
+      <SelectBar type="class" addBtn="新增課程" filter1="價格篩選" filter2="課程種類" option1="現場體驗" option2="線上課程"  />
       <div className="w-full max-w-screen-2xl mx-auto mt-3 ">
         <div className="productSection sm:justify-start justify-center bg-[#FFFDF6] rounded-[10px] shadow-md py-4 px-10">
           <div
@@ -31,11 +31,11 @@ const ClassSelect = () => {
                     </div>
                     <img
                       className="w-full h-full object-cover"
-                      src="https://via.placeholder.com/290x220.png"
+                      src="https://i.imgur.com/AeRNyF2.png"
                       alt=""
                     />
                     <NavLink
-                      to="/class/edit"
+                      to="/class/edit/:id"
                       className="absolute top-3 left-3 flex justify-center items-center h-10 w-10 rounded-full bg-white"
                     >
                       <BsPencilSquare className="fill-[#FFCE5D] h-8 w-8 " />

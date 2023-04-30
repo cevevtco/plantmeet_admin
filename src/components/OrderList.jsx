@@ -11,7 +11,7 @@ const OrderList = (props) => {
     <tr className="text-[#7d7f7e]" key={i}>
       <td className="w-1/6">user{3 + i}</td>
       <td className="w-1/6">user{3 + i}@example.com</td>
-      <td className="w-1/6">202304120{3 + i}</td>
+      <td className="w-1/6">20230412000{3 + i}</td>
       <td className="w-1/6">2023-04-01 10:00:05</td>
       <td className="w-1/6">
         <button className="status_ship table-cell rounded-[10px] py-[1px] px-[45px] text-[#FFFDF6] bg-[#5aab8e]">
@@ -72,7 +72,7 @@ const OrderList = (props) => {
             <tr className="text-[#7d7f7e]">
               <td className="w-1/6">user1</td>
               <td className="w-1/6">user1@example.com</td>
-              <td className="w-1/6">2023041201</td>
+              <td className="w-1/6">202304120001</td>
               <td className="w-1/6">2023-04-01 10:00:05</td>
               <td className="w-1/6">
                 <button className="status_ship table-cell rounded-[10px] py-[1px] px-[45px] text-[#FFFDF6] bg-[#5aab8e]">
@@ -93,7 +93,7 @@ const OrderList = (props) => {
             <tr>
               <td className="w-1/6">user2</td>
               <td className="w-1/6">user2@example.com</td>
-              <td className="w-1/6">2023041202</td>
+              <td className="w-1/6">202304120002</td>
               <td className="w-1/6">2023-04-01 10:00:05</td>
               <td className="w-1/6">
                 <button className="status_handle table-cell rounded-[10px] py-[1px] px-[45px] text-[#FFFDF6] bg-[#f58a9e]">

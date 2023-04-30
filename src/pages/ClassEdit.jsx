@@ -81,7 +81,7 @@ const ClassEdit = () => {
               <div className="h-full flex flex-col justify-start items-center   w-[524.88px]  justify-self-start  overflow-scroll   ">
                 <form className="flex flex-wrap  flex-col items-center gap-5 w-full ">
                   <label
-                    htmlFor=""
+                    htmlFor="courseName"
                     className="flex justify-center items-center flex-shrink-0"
                   >
                     <span className="flex  mb-2 w-[90px]">課程名稱：</span>
@@ -89,8 +89,24 @@ const ClassEdit = () => {
                       type="text"
                       value={courseName}
                       onChange={handleCourseNameChange}
+                      name = "courseName"
                       className="border-none text-black py-2 px-6 flex bg-[#E9F6CD] rounded-lg w-[400px]"
                     />
+                  </label>
+                  <label
+                    htmlFor=""
+                    className="flex justify-center items-center flex-shrink-0"
+                  >
+                    <span className="flex  mb-2 w-[90px]">課程分類：</span>
+                    <select
+                      type="text"
+                      className="border-none text-black py-2 px-6 flex bg-[#E9F6CD] rounded-lg w-[400px]"
+                    >
+                      <option value="">選擇分類</option>
+                      <option value="">現場體驗</option>
+                      <option value="">線上課程</option>
+                    
+                    </select>
                   </label>
                   <label
                     htmlFor=""
