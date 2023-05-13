@@ -33,7 +33,7 @@ const Header = (props) => {
             <img
               src={img}
               alt="Admin Image"
-              className="max-w-full mx-auto block rounded-full"
+              className="max-w-full mx-auto block object-cover"
             />
           </div>
         </div>

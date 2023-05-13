@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 // Imported components
 import { Header, LineChart, PieChart } from "../components";
@@ -11,6 +12,14 @@ import { IoEyeSharp } from "react-icons/io5";
 import { HiOutlineArrowLongRight } from "react-icons/hi2";
 
 const Dashboard = () => {
+  const [orders, setOrders] = useState([]);
+  useEffect(() => {
+        axios.get("http://localhost:8080/order").then((res) => {
+          //沒key上name，server的name會得到null值
+        console.log(res.data);
+        setOrders(res.data);
+      });
+  }, []);
   return (
     <>
       <Header title="您好 Admin, 歡迎回來！" />
@@ -70,45 +79,61 @@ const Dashboard = () => {
                     </tr>
                   </thead>
 
-                  <tbody>
-                    <tr className="text-[#7d7f7e]">
-                      <td className="w-1/6">user1</td>
-                      <td className="w-1/6">user1@example.com</td>
-                      <td className="w-1/6">2023041201</td>
-                      <td className="w-1/6">2023-04-01 10:00:05</td>
-                      <td className="w-1/6">
-                        <button className="status_ship table-cell rounded-[10px] py-[1px] px-[45px] text-[#FFFDF6] bg-[#5aab8e]">
-                          已發貨
-                        </button>
-                      </td>
-                      <td className="w-1/6  ">
-                        <NavLink to="/order/status">
-                          <button className="table-cell">
-                            <IoEyeSharp className="icon  icon-selected fill-[#ffce5d] cursor-pointer" />
-                          </button>
-                        </NavLink>
-                      </td>
-                    </tr>
-                  </tbody>
+                  {orders.slice(0, 2).map(
+                    (order, index) => (
+                      console.log(order),
+                      (
+                        <tbody key={index} className="text-[#7d7f7e]">
+                          <tr className="text-[#7d7f7e]">
+                            <td className="w-1/6">{order.username}</td>
+                            <td className="w-1/6">{order.email}</td>
+                            <td className="w-1/6">{order.order_no}</td>
+                            <td className="w-1/6">{order.order_date}</td>
+                            <td className="w-1/6">
+                              {/* <button className="status_ship table-cell rounded-[10px] py-[1px] px-[45px] text-[#FFFDF6] bg-[#5aab8e]"> */}
+                              <button
+                                className={`table-cell rounded-[10px] py-[1px] px-[45px] text-[#FFFDF6] ${
+                                  order.status === "處理中"
+                                    ? "bg-[#f58a9e]"
+                                    : order.status === "已發貨"
+                                    ? " bg-[#5aab8e]"
+                                    : "bg-[#ffce5d]"
+                                }`}
+                              >
+                                {order.status}
+                              </button>
+                            </td>
+                            <td className="w-1/6  ">
+                              <NavLink to="/order/status/:id">
+                                <button className="table-cell">
+                                  <IoEyeSharp className="icon  icon-selected fill-[#ffce5d] cursor-pointer" />
+                                </button>
+                              </NavLink>
+                            </td>
+                          </tr>
 
-                  <tbody className="text-[#7d7f7e]">
-                    <tr>
-                      <td className="w-1/6">user2</td>
-                      <td className="w-1/6">user2@example.com</td>
-                      <td className="w-1/6">2023041202</td>
-                      <td className="w-1/6">2023-04-01 10:00:05</td>
-                      <td className="w-1/6">
-                        <button className="status_handle table-cell rounded-[10px] py-[1px] px-[45px] text-[#FFFDF6] bg-[#f58a9e]">
-                          處理中
-                        </button>
-                      </td>
-                      <td className="w-1/6 align-middle">
-                        <button className=" table-cell">
-                          <IoEyeSharp className="icon  icon-selected fill-[#ffce5d] cursor-pointer" />
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
+                          {/* <tr>
+                        <td className="w-1/6">{order.username}</td>
+                        <td className="w-1/6">{order.email}</td>
+                        <td className="w-1/6">{order.order_no}</td>
+                        <td className="w-1/6">{order.order_date}</td>
+                        <td className="w-1/6">
+                          <button className="status_handle table-cell rounded-[10px] py-[1px] px-[45px] text-[#FFFDF6] bg-[#f58a9e]">
+                            處理中
+                          </button>
+                        </td>
+                        <td className="w-1/6 align-middle">
+                          <NavLink to="/order/status/:id">
+                            <button className=" table-cell">
+                              <IoEyeSharp className="icon  icon-selected fill-[#ffce5d] cursor-pointer" />
+                            </button>
+                          </NavLink>
+                        </td>
+                      </tr> */}
+                        </tbody>
+                      )
+                    )
+                  )}
                 </table>
                 <NavLink
                   to="/order"

@@ -8,6 +8,10 @@ import makeAnimated from "react-select/animated";
 //Import components
 import { Header } from "../components";
 
+//Import icons
+import { TbUpload } from "react-icons/tb";
+
+
 const CouponCreate = () => {
   const options = [
     { value: "多肉植物", label: "多肉植物" },
@@ -44,17 +48,15 @@ const CouponCreate = () => {
             </div>
 
             <div className="flex sm:justify-start justify-center  h-[600px] items-center  w-full max-w-screen-2xl mx-auto mt-3  overflow-scroll">
-              <div className="flex flex-col w-[750px]  mr-10  ">
-                <div className="flex  justify-center  w-full">
-                  <img
-                    src="https://via.placeholder.com/570x300"
-                    alt="larger picture"
-                    className="w-[570px] h-[300px] object-cover object-center mb-4 rounded-xl hover:opacity-75 cursor-pointer"
+              <div className="flex flex-col w-[750px] bg-gray-100 mr-10 hover:opacity-75 cursor-pointer ">
+                <div className="flex  justify-center  w-full h-[300px] border border-slate-300 rounded-xl  ">
+                  <TbUpload
+                    className="text-8xl text-gray-400 object-cover object-center mb-4 "
                   />
                 </div>
               </div>
 
-              <div className="h-full flex flex-col justify-start items-center   w-[524.88px]  justify-self-start  overflow-scroll   ">
+              <div className="h-full flex flex-col justify-start items-center   w-[524.88px]  justify-self-start  overflow-scroll mt-20  ">
                 <form className="flex flex-wrap  flex-col items-center gap-5 w-full ">
                   <label
                     htmlFor=""

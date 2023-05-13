@@ -1,12 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+
 const SelectBar = (props) => {
   let options = null;
   if (props.type === "class") {
     options = (
       <>
-
         <option value="">{props.option1}</option>
         <option value="">{props.option2}</option>
       </>

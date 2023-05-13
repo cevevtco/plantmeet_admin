@@ -38,7 +38,7 @@ const App = () => {
               <Route path="/class" element={<ClassSelect />} />
               <Route path="/class/edit/:id" element={<ClassEdit />} />
               <Route path="/order" element={<OrderSelect />} />
-              <Route path="/order/status" element={<OrderStatus />} />
+              <Route path="/order/status/:id" element={<OrderStatus />} />
               <Route path="/coupon" element={<CouponSelect />} />
               <Route path="/coupon/create" element={<CouponCreate />} />
               <Route path="/salesdata" element={<SalesData />} />

@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 //Import components
 import { Header, SelectBar } from "../components";
 
 //Imported icons
 import { BsPencilSquare, BsTrash } from "react-icons/bs";
-
+import { ImImages } from "react-icons/im";
 
 const baseURL = "http://localhost:8080";
 
 const ProductSelect = () => {
   const [products, setProducts] = useState([]);
-  const MySwal = withReactContent(Swal)
+  const MySwal = withReactContent(Swal);
   useEffect(() => {
     axios.get(baseURL + "/product/植感選物").then((res) => {
       console.log(res.data);
@@ -29,42 +28,42 @@ const ProductSelect = () => {
       const result = await MySwal.fire({
         title: `確認刪除 "${name}" ?`,
         text: "刪除後將無法恢復!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#FFCE5D',
-        cancelButtonColor: '#F58A9E',
-        confirmButtonText: '是的, 確定刪除!'
+        confirmButtonColor: "#FFCE5D",
+        cancelButtonColor: "#F58A9E",
+        confirmButtonText: "是的, 確定刪除!",
       });
-  
+
       if (result.isConfirmed) {
-        const response =  await axios.delete(baseURL + `/product/${id}`);
+        const response = await axios.delete(baseURL + `/product/${id}`);
         console.log(response);
-        if(response.err) {
+        if (response.err) {
           Swal.fire({
-            title: '刪除失敗',
+            title: "刪除失敗",
             text: `產品"${name}"刪除失敗，請稍後再試`,
-            icon: 'error',
-            confirmButtonColor: '#FFCE5D'
+            icon: "error",
+            confirmButtonColor: "#FFCE5D",
           });
         } else {
-           axios.get(baseURL + "/product/植感選物").then((res) => {
+          axios.get(baseURL + "/product/植感選物").then((res) => {
             setProducts(res.data);
           });
           Swal.fire({
-            title: '此產品已刪除!',
+            title: "此產品已刪除!",
             text: `產品"${name}"已成功刪除!`,
-            icon: 'success',
-            confirmButtonColor: '#FFCE5D'
+            icon: "success",
+            confirmButtonColor: "#FFCE5D",
           });
         }
       }
     } catch (error) {
       console.log(error);
       Swal.fire({
-        title: '刪除失敗',
+        title: "刪除失敗",
         text: `產品"${name}"刪除失敗，請稍後再試`,
-        icon: 'error',
-        confirmButtonColor: '#FFCE5D'
+        icon: "error",
+        confirmButtonColor: "#FFCE5D",
       });
     }
   };
@@ -93,18 +92,33 @@ const ProductSelect = () => {
               {products.map((data) => (
                 <div
                   key={data.id}
-                  className="w-[230px] h-[280px] overflow-hidden bg-white rounded-[20px] shadow-md mb-8"
+                  className="w-[230px] h-[280px] overflow-hidden bg-white rounded-[20px] shadow-md mb-8 "
                   style={{ marginBottom: "-12px" }}
                 >
-                  <div className="w-full h-[180px] relative group">
-                    <div className="absolute top-3 right-3 flex justify-center items-center h-10 w-10  rounded-full bg-white">
-                      <BsTrash onClick={() => handleDelete(data.id,data.name)} className=" fill-[#F58A9E] h-8 w-8 cursor-pointer" />
+                  <div className="w-full h-[180px] relative group border border-b">
+                    <div className="absolute top-3 right-3 flex justify-center items-center h-10 w-10  rounded-full bg-white ">
+                      <BsTrash
+                        onClick={() => handleDelete(data.id, data.name)}
+                        className=" fill-[#F58A9E] h-8 w-8 cursor-pointer"
+                      />
                     </div>
-                    <img
-                      className="w-full h-full object-cover"
-                      src={JSON.parse(data.images)[0]}
-                      alt=""
-                    />
+                    {/* 假如product裏面還沒新增圖片，就顯示圖片小圖 */}
+                    {data.images && JSON.parse(data.images)[0] ? (
+                      <img
+                        className="w-full h-full object-cover"
+                        src={
+                          JSON.parse(data.images)[0].includes("imgur")
+                            ? JSON.parse(data.images)[0]
+                            : `${baseURL}/${JSON.parse(data.images)[0]}`
+                        }
+                        alt=""
+                      />
+                    ) : (
+                      <div className="flex w-full h-full items-center justify-center">
+                        <ImImages className="flex  object-cover text-8xl text-gray-400" />
+                      </div>
+                    )}
+
                     <div className="absolute top-3 left-3 flex justify-center items-center h-10 w-10 rounded-full bg-white">
                       <BsPencilSquare className="fill-[#FFCE5D] h-8 w-8 cursor-pointer" />
                     </div>
@@ -114,10 +128,10 @@ const ProductSelect = () => {
                       {data.SKU}
                     </p>
                     <p className="font-normal text-lg text-black truncate mb-1 tracking-[0.5rem]">
-                    {data.name}
+                      {data.name}
                     </p>
                     <p className="text-sm truncate text-black mt-1 tracking-[0.5rem]">
-                    NT${data.price}
+                      NT${data.price}
                     </p>
                   </div>
                 </div>

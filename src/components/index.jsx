@@ -5,6 +5,8 @@ import OrderList from "./OrderList";
 import CouponList from "./CouponList";
 import LineChart from "./LineChart";
 import PieChart from "./PieChart";
+import ReactDropzone from "./ReactDropzone";
+
 
 export {
   Sidebar,
@@ -14,4 +16,5 @@ export {
   CouponList,
   LineChart,
   PieChart,
+  ReactDropzone,
 };

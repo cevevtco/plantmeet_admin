@@ -12,6 +12,7 @@ import { BsPencilSquare, BsTrash } from "react-icons/bs";
 import { Header, SelectBar } from "../components";
 import { NavLink } from "react-router-dom";
 
+
 const baseURL = "http://localhost:8080";
 
 const ClassSelect = () => {
@@ -69,7 +70,7 @@ const ClassSelect = () => {
       });
     }
   };
-
+ 
   return (
     <div className="max-w-screen-2xl mx-auto">
       <Header title="商品管理 → 體驗課程" />
@@ -81,6 +82,7 @@ const ClassSelect = () => {
         option1="現場體驗"
         option2="線上課程"
       />
+
       <div className="w-full max-w-screen-2xl mx-auto mt-3 ">
         <div className="productSection sm:justify-start justify-center bg-[#FFFDF6] rounded-[10px] shadow-md py-4 px-10">
           <div
@@ -105,7 +107,11 @@ const ClassSelect = () => {
                   {data.images && (
                       <img
                       className="w-full h-full object-cover"
-                      src={JSON.parse(data.images)[0]}
+                      src={
+                          JSON.parse(data.images)[0].includes("imgur")
+                            ? JSON.parse(data.images)[0]
+                            : `${baseURL}/${JSON.parse(data.images)[0]}`
+                        }
                       alt="classPicture"
                     />
 
