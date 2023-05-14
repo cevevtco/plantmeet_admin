@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 
 //Imported Components
 import { Header } from "../components";
+import Select from "react-select";
 
 //Imported Icons
 import {
@@ -13,6 +14,11 @@ import {
 import { FaTruck } from "react-icons/fa";
 import { IoMdPin } from "react-icons/io";
 const OrderStatus = () => {
+  const options = [
+    { value: "處理中", label: "處理中" },
+    { value: "已發貨", label: "已發貨" },
+    { value: "已到貨", label: "已到貨" },
+  ];
   return (
     <div className="max-w-screen-2xl mx-auto">
       <Header title="訂單管理 → 詳細資料" />
@@ -50,7 +56,17 @@ const OrderStatus = () => {
                     </span>
                   </div>
                   <form className="flex  justify-center items-center gap-3 ">
-                    <select
+                    <Select
+                      options={options}
+                      placeholder="更改狀態"
+                      isClearable={true}
+                      className="flex-grow  w-[200px] py-2 px-5 rounded-lg font-semibold"
+                      // value={selectedStatus}
+                      // onChange={(option) =>{
+                      //   setSelectedStatus(option)
+                      // }}
+                    />
+                    {/* <select
                       name=""
                       id=""
                       className="flex-grow border border-gray-300 py-2 px-5 rounded-lg"
@@ -61,7 +77,7 @@ const OrderStatus = () => {
                       <option value="">處理中</option>
                       <option value="">已發貨</option>
                       <option value="">已到貨</option>
-                    </select>
+                    </select> */}
                     <input
                       type="submit"
                       value="確定"

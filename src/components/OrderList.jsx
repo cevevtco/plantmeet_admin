@@ -4,7 +4,7 @@ import axios from "axios";
 //Imported icons
 import { IoEyeSharp } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
-import { GrPowerReset } from "react-icons/gr"
+import { GrPowerReset } from "react-icons/gr";
 
 //Imported components
 import DatePicker from "react-datepicker";
@@ -12,8 +12,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-select";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import ReactPaginate from 'react-paginate';
-
+import ReactPaginate from "react-paginate";
 
 const MySwal = withReactContent(Swal);
 
@@ -29,27 +28,40 @@ const OrderList = (props) => {
   ];
 
   const [orders, setOrders] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
   const [name, setName] = useState("");
   const handleInputChange = (e) => {
     setName(e.target.value);
-  }; 
+  };
 
-  const getData = (name, startDate, endDate, status) => {
+  const getData = (name, startDate, endDate, status, pageNumber) => {
+    setCurrentPage(pageNumber - 1);
+    const limit = 14; // 每頁顯示的筆數
+    const offset = (pageNumber - 1) * limit; // 偏移量
     const encodedName = encodeURIComponent(name);
     const encodedStartDate = encodeURIComponent(JSON.stringify(startDate));
     const encodedEndDate = encodeURIComponent(JSON.stringify(endDate));
     const encodedOrderStatus = encodeURIComponent(status);
-    const dateRangeString = startDate && endDate ? `&startDate=${encodedStartDate}&endDate=${encodedEndDate}` : "";
+    const nameString = name ? `name=${encodedName}` : "name=";
+    const dateRangeString =
+      startDate && endDate
+        ? `&startDate=${encodedStartDate}&endDate=${encodedEndDate}`
+        : "";
     const statusString = status ? `&orderStatus=${encodedOrderStatus}` : "";
     axios
       .get(
-        `${baseURL}/order?name=${encodedName}${dateRangeString}${statusString}`
+        `${baseURL}/order?${nameString}${dateRangeString}${statusString}&offset=${offset}&limit=${limit}`
       )
       .then((res) => {
         // axios.get(baseURL + "/order").then((res) => {
         console.log(res.data);
-        if (res.data.length > 0) {
-          setOrders(res.data);
+        if (res.data.orders) {
+          setOrders(res.data.orders);
+          setTotalPages(Math.ceil(res.data.total_count/limit));
+          //res.data.total_count總筆數 (38) / limit每頁顯示的筆數 (14) = 總頁數 (2.7) -->Math.ceil 向上取整數(3)
+          console.log(res.data.total_count)
         } else {
           MySwal.fire({
             title: "查無相關資料！",
@@ -57,12 +69,50 @@ const OrderList = (props) => {
             confirmButtonColor: "#FFCE5D",
           });
           setOrders([]);
+          setTotalPages(1);
+          setCurrentPage(1);
         }
       });
-  }
+  };
   useEffect(() => {
-    getData(name, dateRange[0], dateRange[1], selectedStatus);
+    getData(name, dateRange[0], dateRange[1], selectedStatus?.value, 1);
+    //name, dateRange[0], dateRange[1], selectedStatus?.value, 1 //state取得的值，丟到getData function
   }, []);
+
+  // const startDate = "";
+  // const endDate = ""; //
+  // const orderStatus = "";
+  // const getOrders = (pageNumber = 1) => {
+  //   const limit = 14; // 每頁顯示的筆數
+  //   const offset = (pageNumber - 1) * limit; // 偏移量
+
+  //   axios
+  //     .get(`${baseURL}/order`, {
+  //       params: {
+  //         name: name,
+  //         start_date: startDate,
+  //         end_date: endDate,
+  //         order_status: orderStatus,
+  //         limit: limit,
+  //         offset: offset,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       setOrders(res.data.results);
+  //       setTotalPages(Math.ceil(res.data.total / limit));
+  //       console.log("total: "+res.data);
+  //       setCurrentPage(pageNumber);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
+
+  const handlePageClick = (data) => {
+    const selectedPage = data.selected + 1;
+    console.log(selectedPage);
+    getData(name, dateRange[0], dateRange[1], selectedStatus?.value, selectedPage);
+  };
 
   // const tableRows = [...Array(15)].map((_, i) => (
   //   <tr className="text-[#7d7f7e]" key={i}>
@@ -87,11 +137,10 @@ const OrderList = (props) => {
   return (
     <>
       <div className="flex flex-col items-center w-full mt-10 gap-8 ">
-        <div className="flex items-center mb-4  space-x-4 ml-auto relative ">
-      
+        <div className="flex items-center mb-4  space-x-4 ml-auto ">
           <input
             type="text"
-            placeholder="搜尋"
+            placeholder="搜尋訂購人姓名"
             value={name}
             className="flex-grow border border-gray-300 py-2 px-4 rounded-lg w-full"
             onChange={handleInputChange}
@@ -117,9 +166,10 @@ const OrderList = (props) => {
             placeholder="訂單狀態"
             isClearable={true}
             className="flex-grow py-2  rounded-lg  w-full "
-            onChange={(option) =>
-              setSelectedStatus(option ? option.value : null)
-            }
+            value={selectedStatus}
+            onChange={(option) =>{
+              setSelectedStatus(option)
+            }}
           />
 
           <DatePicker
@@ -139,20 +189,22 @@ const OrderList = (props) => {
           <button
             type="button"
             className="bg-[#5AAB8E] text-white py-2 px-4 rounded-lg w-[150px]"
-            onClick={() =>  getData(name, dateRange[0], dateRange[1], selectedStatus)
+            onClick={() =>
+              getData(name, dateRange[0], dateRange[1], selectedStatus?.value, 1)
             }
           >
             搜尋
           </button>
-          <GrPowerReset 
-           className="w-20 h-20 text-gray-200 cursor-pointer"
-           onClick={() => {
-            setName("") ;
-            setDateRange([null, null]);
-            setSelectedStatus(null);
-            getData("", null, null, null);
-          }}
-           />
+          <GrPowerReset
+            className="w-20 h-20 text-gray-200 cursor-pointer"
+            title="搜尋資訊重置"
+            onClick={() => {
+              setName("");
+              setDateRange([null, null]);
+              setSelectedStatus(null);
+              getData("", null, null, null, 1);
+            }}
+          />
         </div>
       </div>
       <div className="overflow-x-auto">
@@ -167,11 +219,11 @@ const OrderList = (props) => {
               <th className="w-1/6">詳細</th>
             </tr>
           </thead>
-         
+
           {orders
             // .filter(
             //   (order) =>
-            //     selectedStatus === null || order.status === selectedStatus
+            //     selectedStatus?.value === null || order.status === selectedStatus?.value
             // )
             // .filter(
             //   (order) =>
@@ -251,9 +303,25 @@ const OrderList = (props) => {
               </tbody>
             ))}
         </table>
+        <ReactPaginate
+          forcePage={currentPage}
+          nextLabel=">"
+          previousLabel="<"
+          pageCount={totalPages}
+          pageRangeDisplayed={5}
+          marginPagesDisplayed={2}
+          onPageChange={handlePageClick}
+          containerClassName="flex justify-center items-center my-4"
+          pageClassName="mr-2"
+          pageLinkClassName="px-3 py-1 rounded text-gray-700 hover:bg-gray-300"
+          activeLinkClassName="px-3 py-1 bg-[#e9f6cd] text-white rounded"
+          previousLinkClassName="px-3 py-1 rounded text-gray-700 hover:bg-gray-300 text-2xl font-bold"
+          nextLinkClassName="px-3 py-1 rounded text-gray-700 hover:bg-gray-300 text-2xl font-bold"
+        />
       </div>
     </>
   );
 };
 
 export default OrderList;
+

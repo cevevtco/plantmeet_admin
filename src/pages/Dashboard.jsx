@@ -14,10 +14,10 @@ import { HiOutlineArrowLongRight } from "react-icons/hi2";
 const Dashboard = () => {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-        axios.get("http://localhost:8080/order").then((res) => {
+        axios.get("http://localhost:8080/order?&offset=0&limit=2").then((res) => {
           //沒key上name，server的name會得到null值
         console.log(res.data);
-        setOrders(res.data);
+        setOrders(res.data.orders);
       });
   }, []);
   return (
@@ -79,7 +79,7 @@ const Dashboard = () => {
                     </tr>
                   </thead>
 
-                  {orders.slice(0, 2).map(
+                  {orders.map(
                     (order, index) => (
                       console.log(order),
                       (
