@@ -254,7 +254,7 @@ const OrderList = (props) => {
                     </button>
                   </td>
                   <td className="w-1/6">
-                    <NavLink to="/order/status/:id">
+                    <NavLink to={`/order/status/${order.id}`}>
                       <button className="table-cell">
                         <IoEyeSharp className="icon  icon-selected fill-[#ffce5d] cursor-pointer" />
                       </button>
