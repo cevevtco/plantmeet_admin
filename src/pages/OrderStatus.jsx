@@ -78,6 +78,7 @@ const OrderStatus = () => {
           setSelectedOption({value:res.data[0].status, label:res.data[0].status});
           
         });
+        
 
       
         MySwal.fire({
@@ -210,20 +211,21 @@ const OrderStatus = () => {
                      </div>
    
                      <div className="flex items-center w-full my-5 justify-between  mt-10 ">
-                       <div className="flex items-center gap-2 px-2 py-1 w-28 h-12 bg-yellow-400 rounded-full  ml-24 ">
+                       <div className="flex items-center gap-2 px-2 py-1 w-28 h-12 bg-yellow-400 rounded-full  ml-24 "
+                       >
                          <button className="w-full h-full text-white">
                            訂單確認
                          </button>
                        </div>
-                       <div className="w-[264px] h-[2px] bg-[#FFCE5D]"></div>
-                       <div className="flex items-center gap-2 px-2 py-1 w-28 h-12 bg-yellow-400 rounded-full ">
-                         <button className="w-full h-full text-white">
+                       <div className={`w-[264px] h-[2px] ${ order[0].status === "已發貨" || order[0].status === "已到貨" ? "border-solid" : "border-dashed"} border-[#FFCE5D] border-2`}></div>
+                       <div className={`flex items-center gap-2 px-2 py-1 w-28 h-12 ${order[0].status === "處理中" ? "" :"bg-yellow-400"} border-yellow-400 border-2 rounded-full `}>
+                         <button className={`w-full h-full ${order[0].status === "處理中" ? "text-[#FFCE5D]" : "text-white"}`}>
                            商品出貨
                          </button>
                        </div>
-                       <div className="w-[264px] h-[2px] border-[#FFCE5D] border-dashed border-2"></div>
-                       <div className="flex items-center gap-2 px-2 py-1 w-28 h-12 border-2  border-yellow-400 rounded-full mr-40 ">
-                         <button className="w-full h-full  text-[#FFCE5D]">
+                       <div className={`w-[264px] h-[2px] ${order[0].status === "已到貨" ? "border-solid" : "border-dashed"} border-[#FFCE5D] border-2`}></div>
+                       <div className={`flex items-center gap-2 px-2 py-1 w-28 h-12 border-2 ${order[0].status === "已到貨" ? "bg-yellow-400" : ""}  border-yellow-400 rounded-full mr-40 `}>
+                         <button className={`w-full h-full  ${order[0].status === "已到貨" ? "text-white" : "text-[#FFCE5D]"} `}>
                            商品送達
                          </button>
                        </div>
