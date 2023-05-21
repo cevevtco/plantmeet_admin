@@ -113,6 +113,14 @@ const ClassEdit = () => {
   //onChange 改變編輯的值
   const handleChange = async (id, name) => {
     try {
+      if (!classes.name || !classes.category_name || !classes.price || !classes.qty_in_stock || !classes.description || !classes.content || !classes.others) {
+        MySwal.fire({
+          title: "請輸入完整資料",
+          icon: "warning",
+          confirmButtonColor: "#FFCE5D",
+        });
+        return;
+      }
       const result = await MySwal.fire({
         title: "確認完成修改並發佈?",
         showDenyButton: false,
@@ -185,6 +193,20 @@ const ClassEdit = () => {
     }
   };
 
+  const handleDemoClick = ()=>{
+        //自動填上表單的值
+        setClasses({
+          ...classes,
+          name: "線上課程｜手作植物生活",
+          price: "1300",
+          qty_in_stock: "20",
+          description: "植物選擇與識別：介紹不同種類的室內植物，了解其特性、生長需求和選擇條件。",
+          content: "手工植物容器：學習使用各種材料（如陶瓷、木材、玻璃等）手工製作植物容器，注重美學設計和實用性。植物繪畫與插畫：探索植物繪畫和插畫技巧，學習如何捕捉植物的形態、色彩和細節，創作個人風格的植物插畫作品。空氣清淨植物製作：學習製作綠色空氣清淨植物，了解其對室內空氣品質的影響和維護方法。",
+          others: "課程時間：每週一次，共計8週。目標學員：對手作藝術、植物和室內設計有興趣的個人。先備知識：無需特定的先備知識，歡迎所有程度的學員參加。",
+         
+        })
+  }
+
   return (
     <div className="max-w-screen-2xl mx-auto ">
       <Header title="體驗課程 → 課程編輯" />
@@ -200,6 +222,12 @@ const ClassEdit = () => {
                 <span>返回上一頁</span>
               </NavLink>
               <form className="flex items-center space-x-4 ml-auto">
+              <input
+                  type="button"
+                  value="DEMO"
+                  className="bg-slate-500 text-white py-2 px-4 rounded-lg cursor-pointer"
+                  onClick={handleDemoClick}
+                />
                 <input
                   type="button"
                   value="確認發佈"

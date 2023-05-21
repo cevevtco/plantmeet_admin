@@ -11,12 +11,14 @@ import { BsPencilSquare, BsTrash } from "react-icons/bs";
 //Imported components
 import { Header, SelectBar } from "../components";
 import { NavLink } from "react-router-dom";
+import Select from "react-select";
 
 
 const baseURL = "http://localhost:8080";
 
 const ClassSelect = () => {
   const [classes, setClasses] = useState([]);
+  
   const MySwal = withReactContent(Swal)
   useEffect(() => {
     axios.get(baseURL + "/product/體驗課程").then((res) => {
@@ -106,7 +108,7 @@ const ClassSelect = () => {
                     </div>
                   {data.images && (
                       <img
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover "
                       src={
                           JSON.parse(data.images)[0].includes("imgur")
                             ? JSON.parse(data.images)[0]

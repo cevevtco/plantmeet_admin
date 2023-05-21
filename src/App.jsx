@@ -1,5 +1,7 @@
-import React from "react";
+import React,{ useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import axios from "axios";
+import cookies from "js-cookie";
 
 //Imported components
 import { Sidebar } from "./components";
@@ -21,16 +23,35 @@ import {
   Login,
 } from "./pages";
 
+const baseURL = "http://localhost:8080";
+
 const App = () => {
   // 判斷是否在登入頁面
-  const isAuth = true;
+  const [isAuth, setIsAuth] = useState(false);
+  useEffect(() => {
+    const cookie = cookies.get("x-access-token");
+    if (cookie) {
+      axios.get(baseURL + "/user/isAuth", 
+       { withCredentials: true }).then((res) => {
+        if(res.data.id){
+          setIsAuth(true);
+        } else {
+          setIsAuth(false);
+        }
+      })
+    }else{
+      setIsAuth(false);
+    }
+
+   
+  }, []);
   return (
     <>
       {/* 如果不是登入頁面，則渲染  Sidebar */}
       {isAuth ? (
         <div className="containerr">
           <Sidebar />
-          <div className="w-[77%] h-full p-[2rem] overflow-auto ">
+          <div className="w-[77%] h-full p-[2rem] overflow-auto">
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/products" element={<ProductSelect />} />

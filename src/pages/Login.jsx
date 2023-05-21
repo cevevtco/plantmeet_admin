@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./login.css";
-import { useState } from "react";
-import Axios from "axios";
+import axios from "axios";
+import cookies from "js-cookie";
 
 //Inport icons
 import { BsFillPersonFill } from "react-icons/bs";
@@ -10,31 +10,45 @@ import logo from "../assets/login_page_logo.svg";
 
 import smallPlant from "../assets/smallplant.svg";
 import bigPlant from "../assets/bigplant.svg";
+import { IoSaveOutline } from "react-icons/io5";
 
+
+
+const baseUrl = "http://localhost:8080";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
 
-  const handleSubmit = (e) => {
+ 
+  const handleSubmit =  (e) => {
+    
     e.preventDefault();
-    Axios.post("http://localhost:8080/login", {
+    axios.post(baseUrl +`/user/login`, {
       email: email,
       password: password,
-    }).then((res) => {
+    }).then( (res) => {
       if (res.data.err) {
         setLoginStatus(res.data.err);
       } else {
-        setLoginStatus(res.data.msg);
+        // setLoginStatus(res.data.token);
+        // localStorage.setItem("token", res.data.token);
+        cookies.set("x-access-token", res.data.token, {
+          expires: Date.parse(res.data.expiresIn),
+          path: "/",
+          // httpOnly: true,
+        });
+        window.location.href = "/";
+   
       }
     });
   };
 
   //Onclick let us get what the user has entered
 
-  document.body.style.backgroundColor = "#5aab8e";
+  // document.body.style.backgroundColor = "#5aab8e";
   return (
-    <div className="container">
+    <div className="containerr w-screen h-screen bg-[#5aab8e]">
       <div
         style={{
           position: "absolute",
@@ -97,14 +111,15 @@ const Login = () => {
         >
           Login to your account
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <label htmlFor="adminEmail">
             <input
+              
               id="adminEmail"
               type="email"
               name="adminEmail"
               onChange={(e) => setEmail(e.target.value)}
-              className="absolute w-[325px] h-[62px] left-[69.05px] top-[240.69px] border-none  rounded-[10px] p-10 bg-[#E9F6CD] focus:bg-[#90E07C]"
+              className="absolute w-[325px] h-[62px] left-[69.05px] top-[240.69px] border-none  rounded-[10px] p-10 pl-14 bg-[#E9F6CD] focus:bg-[#90E07C]"
               style={{
                 paddingLeft: "50px",
               }}
@@ -119,7 +134,7 @@ const Login = () => {
               type="password"
               name="adminPwd"
               onChange={(e) => setPassword(e.target.value)}
-              className="absolute w-[325px] h-[62px] left-[69.05px] top-[319.69px] border-none  rounded-[10px] p-10 bg-[#E9F6CD] focus:bg-[#90E07C]"
+              className="absolute w-[325px] h-[62px] left-[69.05px] top-[319.69px] border-none  rounded-[10px] p-10 pl-14 bg-[#E9F6CD] focus:bg-[#90E07C]"
               style={{
                 paddingLeft: "50px",
               }}
@@ -131,12 +146,12 @@ const Login = () => {
           <input
             id="RememberMe"
             type="checkbox"
-            className=" absolute left-[60%] right-[35.36%] top-[67.8%] bottom-[31.3%] appearance-none w-4 h-4 border border-gray-300 rounded-full checked:bg-green-900 checked:border-green-900 checked:after:block checked:after:content-['\2714'] checked:after:text-xs checked:after:text-white"
+            className=" absolute left-[60%] right-[35.36%] top-[67.8%] bottom-[31.3%] appearance-none w-4 h-4 border border-gray-300 rounded-full checked:bg-green-900 checked:border-green-900 checked:after:block checked:after:content-['\2714'] checked:after:text-xs checked:after:text-white cursor-pointer"
             defaultChecked={true}
           />
           <label
             htmlFor="RememberMe"
-            className="absolute w-[100px] h-[18px] left-[290px] top-[405px]  font-medium font-poppins  text-xs text-green-900 items-center flex ml-2"
+            className="absolute w-[100px] h-[18px] left-[290px] top-[405px]  font-medium font-poppins  text-xs text-green-900 items-center flex ml-2 cursor-pointer"
           >
             Remember me
           </label>

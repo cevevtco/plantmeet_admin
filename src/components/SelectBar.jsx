@@ -1,8 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+//Imported components
+
 
 const SelectBar = (props) => {
+
+
   let options = null;
   if (props.type === "class") {
     options = (
@@ -10,6 +14,7 @@ const SelectBar = (props) => {
         <option value="">{props.option1}</option>
         <option value="">{props.option2}</option>
       </>
+  
     );
   } else if (props.type === "product") {
     options = (

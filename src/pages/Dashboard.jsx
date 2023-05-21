@@ -56,7 +56,7 @@ const Dashboard = () => {
           <div className="chartBlock w-[700px] h-[345px] rounded-[10px] bg-white shadow-lg">
             <LineChart />
           </div>
-          <div className="chartStatic w-[700px] h-[345px] rounded-[10px] bg-white shadow-lg">
+          <div className="chartStatic w-[700px] h-[345px] rounded-[10px] bg-white shadow-lg ">
             <PieChart />
           </div>
         </div>
@@ -104,8 +104,7 @@ const Dashboard = () => {
                               </button>
                             </td>
                             <td className="w-1/6  ">
-                              <NavLink to="/order/status/:id">
-                                <button className="table-cell">
+                            <NavLink to={`/order/status/${order.id}`}>                                <button className="table-cell">
                                   <IoEyeSharp className="icon  icon-selected fill-[#ffce5d] cursor-pointer" />
                                 </button>
                               </NavLink>

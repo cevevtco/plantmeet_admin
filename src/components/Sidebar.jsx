@@ -113,7 +113,7 @@ const Sidebar = () => {
             >
               <BsBarChartLine className="icon mr-[1.25rem]" />
               <span className="linkText hover:text-[#7cb5a5] inline-block">
-                銷售數據
+                數據報表
               </span>
             </NavLink>
           </li>

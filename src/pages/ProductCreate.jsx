@@ -151,6 +151,21 @@ const ProductCreate = () => {
     }
   };
 
+  const handleDemoClick = ()=>{
+    //自動填上表單的值
+    setProducts({
+      ...products,
+      name: "多肉植物|綺麗多肉",
+      category_name: "多肉植物",
+      SKU:"PL006",
+      price: "1100",
+      description: "「綺麗多肉」是一系列迷人的多肉植物，以其獨特的外觀和豐富的色彩為人所喜愛。這些多肉植物具有肉質的葉子和莖，能夠在乾燥環境下存儲水分，因此易於栽培和維護。",
+      content: "多樣的品種：「綺麗多肉」系列包括多種迷人的多肉植物品種，如綠色多肉、灰色多肉、粉色多肉等，每個品種都有獨特的外觀和特點。精心栽培：我們精心選擇和培育每一株「綺麗多肉」，確保其健康和品質。我們採用環保種植方法，注重植物的自然生長過程。",
+      others: "維護提示：「綺麗多肉」是相對容易照顧的植物，需要陽光充足但不直射，並保持適度的澆水。詳細的維護指南將隨產品一同提供，以幫助您成功照顧這些美麗的多肉植物。室內與室外使用：「綺麗多肉」適合作為室內和室外裝飾植物，可以放置於陽台、庭院、辦公室、客廳等各種環境中，為您的空間增添生氣和自然的美感。",
+     
+    })
+}
+
   return (
     <div className="max-w-screen-2xl mx-auto ">
       <Header title="植感選物 → 新增產品" />
@@ -166,6 +181,12 @@ const ProductCreate = () => {
                 <span>返回上一頁</span>
               </NavLink>
               <form className="flex items-center space-x-4 ml-auto">
+              <input
+                  type="button"
+                  value="DEMO"
+                  className="bg-slate-500 text-white py-2 px-4 rounded-lg cursor-pointer"
+                  onClick={handleDemoClick}
+                />
                 <input
                   type="button"
                   value="確認發佈"

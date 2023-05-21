@@ -137,7 +137,7 @@ const OrderList = (props) => {
   return (
     <>
       <div className="flex flex-col items-center w-full mt-10 gap-8 ">
-        <div className="flex items-center mb-4  space-x-4 ml-auto ">
+        <div className="flex items-center mb-4  space-x-4 ml-auto relative ">
           <input
             type="text"
             placeholder="搜尋訂購人姓名"
@@ -314,7 +314,7 @@ const OrderList = (props) => {
           containerClassName="flex justify-center items-center my-4"
           pageClassName="mr-2"
           pageLinkClassName="px-3 py-1 rounded text-gray-700 hover:bg-gray-300"
-          activeLinkClassName="px-3 py-1 bg-[#e9f6cd] text-white rounded"
+          activeLinkClassName="px-3 py-1 bg-[#e9f6cd] text-gray-700 rounded"
           previousLinkClassName="px-3 py-1 rounded text-gray-700 hover:bg-gray-300 text-2xl font-bold"
           nextLinkClassName="px-3 py-1 rounded text-gray-700 hover:bg-gray-300 text-2xl font-bold"
         />
