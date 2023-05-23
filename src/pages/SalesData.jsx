@@ -17,7 +17,10 @@ const baseURL = "http://localhost:8080";
 const MySwal = withReactContent(Swal);
 
 const SalesData = () => {
-  const [dateRange, setDateRange] = useState([null, null]);
+  const [dateRange, setDateRange] = useState([
+    new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+    new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
+  ]);
   const [selectedStatus, setSelectedStatus] = useState(null);
   const options = [
     { value: "訂單匯總報表", label: "訂單匯總報表" },

@@ -305,7 +305,7 @@ const OrderStatus = () => {
                               </td>
                               <td className="border-none">{order[0].qty}</td>
                               <td className="border-none">
-                                NT ${order[0].subtotal}
+                                {order[0].subtotal}
                               </td>
                               <td className="border-none"></td>
                             </tr>
@@ -329,7 +329,7 @@ const OrderStatus = () => {
                               </td>
                               <td className="border-none">{order[1].qty}</td>
                               <td className="border-none">
-                                NT ${order[1].subtotal}
+                                {order[1].subtotal}
                               </td>
                               <td className="border-none"></td>
                             </tr>
@@ -353,7 +353,7 @@ const OrderStatus = () => {
                               </td>
                               <td className="border-none">{order[2].qty}</td>
                               <td className="border-none">
-                                NT ${order[2].subtotal}
+                                {order[2].subtotal}
                               </td>
                             </tr>
                           </tbody>
@@ -368,7 +368,7 @@ const OrderStatus = () => {
                           order[2].subtotal}
                       </span>
                       <span>運費：{order[0].shipping_price}</span>
-                      <span>總計：NT ${order[0].order_total}</span>
+                      <span>總計：{order[0].order_total}</span>
                     </div>
                   </div>
                 </div>

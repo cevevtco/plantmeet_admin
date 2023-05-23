@@ -19,11 +19,6 @@ const Info = () => {
     });
   }, []);
 
-  // // 将 Buffer 图片数据转换为 Base64 字符串
-  // const base64String = Buffer.from(user.user_image).toString("base64");
-
-  // // 将 Base64 字符串赋值给 img 元素的 src 属性
-  // <img src={`data:image/png;base64,${base64String}`} alt="User Image" />;
 
   return (
     <div className="max-w-screen-2xl mx-auto">

@@ -170,7 +170,7 @@ const Header = (props) => {
                     個人資訊
                   </NavLink>
                   <NavLink
-                    to="/login"
+                    // to="/login"
                     className="flex  py-3  cursor-pointer hover:text-[#F58A9E] "
                     onClick={() => {
                       cookies.remove("x-access-token");
