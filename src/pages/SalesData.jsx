@@ -260,31 +260,31 @@ const SalesData = () => {
                   <tbody>
                     <tr>
                       <td>紫太陽</td>
-                      <td>500</td>
+                      <td>150</td>
                       <td>30</td>
                       <td>NT $1500</td>
                     </tr>
                     <tr>
                       <td>翠綠盆景</td>
-                      <td>300</td>
+                      <td>140</td>
                       <td>20</td>
                       <td>NT $1100</td>
                     </tr>
                     <tr>
                       <td>苔蘚景觀</td>
-                      <td>300</td>
+                      <td>135</td>
                       <td>30</td>
                       <td>NT $1300</td>
                     </tr>
                     <tr>
                       <td>玫瑰之愛</td>
-                      <td>300</td>
+                      <td>120</td>
                       <td>20</td>
                       <td>NT $1200</td>
                     </tr>
                     <tr>
                       <td>生態之旅</td>
-                      <td>300</td>
+                      <td>100</td>
                       <td>10</td>
                       <td>NT $1100</td>
                     </tr>
@@ -305,31 +305,31 @@ const SalesData = () => {
                   <tbody>
                     <tr>
                       <td>手作鮮花</td>
-                      <td>150</td>
+                      <td>70</td>
                       <td>10</td>
                       <td>NT $1500</td>
                     </tr>
                     <tr>
                       <td>工業風永生花</td>
-                      <td>150</td>
+                      <td>65</td>
                       <td>10</td>
                       <td>NT $1500</td>
                     </tr>
                     <tr>
                       <td>手作盆栽</td>
-                      <td>150</td>
+                      <td>50</td>
                       <td>20</td>
                       <td>NT $1200</td>
                     </tr>
                     <tr>
                       <td>多肉栽培</td>
-                      <td>150</td>
+                      <td>45</td>
                       <td>20</td>
                       <td>NT $1200</td>
                     </tr>
                     <tr>
                       <td>蕨類植物</td>
-                      <td>150</td>
+                      <td>40</td>
                       <td>10</td>
                       <td>NT $1200</td>
                     </tr>

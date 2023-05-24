@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./login.css";
 import axios from "axios";
 import cookies from "js-cookie";
@@ -10,7 +10,6 @@ import logo from "../assets/login_page_logo.svg";
 
 import smallPlant from "../assets/smallplant.svg";
 import bigPlant from "../assets/bigplant.svg";
-import { IoSaveOutline } from "react-icons/io5";
 
 
 

@@ -33,6 +33,7 @@ const App = () => {
     if (cookie) {
       axios.get(baseURL + "/user/isAuth", 
        { withCredentials: true }).then((res) => {
+        //必須要在發出請求前帶上 withCredentials: true 的設定，在跨域請求時才會正常發出附帶 Cookie 的 header
         if(res.data.id){
           setIsAuth(true);
         } else {
