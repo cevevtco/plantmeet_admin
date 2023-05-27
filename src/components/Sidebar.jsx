@@ -28,7 +28,7 @@ const Sidebar = () => {
   // 控制該元素的高度
   const [height, setHeight] = useState(0);
 
-  //當isOpen為true時，將height設為該元素的真實高度；當isOpen為false時，將height設為0，元素就會平滑地收合
+  //當isOpen為true時，將height設為該元素的真實高度；當isOpen為false時，將height設為0，元素就會平滑收合
   //使用useEffect來監聽isOpen的變化並改變height的值
   useEffect(() => {
     setHeight(isOpen ? subMenuRef.current.scrollHeight : 0);

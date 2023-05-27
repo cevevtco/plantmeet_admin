@@ -8,7 +8,6 @@ import Select from "react-select";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-
 //Imported Icons
 import {
   BsCalendarCheck,
@@ -39,7 +38,7 @@ const OrderStatus = () => {
       // console.log(order);
       console.log(res.data[0].status);
     });
-  }, []);
+  }, [id]);
 
   const options = [
     { value: "處理中", label: "處理中" },
@@ -290,6 +289,7 @@ const OrderStatus = () => {
                                   <img
                                     src={order[0].product_image}
                                     className="w-[79px] h-[55px] "
+                                    alt="product_image"
                                   />
                                   <div className="flex flex-col  justify-start  ml-5 text-left">
                                     <span className="w-full">
@@ -315,6 +315,7 @@ const OrderStatus = () => {
                                   <img
                                     src={order[1].product_image}
                                     className="w-[79px] h-[55px] "
+                                    alt="product_image"
                                   />
                                   <div className="flex flex-col justify-start   ml-5 text-left">
                                     <span className="w-full">
@@ -339,6 +340,7 @@ const OrderStatus = () => {
                                   <img
                                     src={order[2].product_image}
                                     className="w-[79px] h-[55px] "
+                                    alt="product_image"
                                   />
                                   <div className="flex flex-col justify-center  ml-5 text-left ">
                                     <span className="w-full">

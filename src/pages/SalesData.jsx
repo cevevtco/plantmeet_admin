@@ -67,7 +67,6 @@ const SalesData = () => {
               ];
             });
             // 把rows加到工作表
-            // 把rows加到工作表
             // worksheet.addRows(rows);
 
             worksheet.addTable({

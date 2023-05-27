@@ -11,7 +11,7 @@ import { BsPencilSquare, BsTrash } from "react-icons/bs";
 //Imported components
 import { Header, SelectBar } from "../components";
 import { NavLink } from "react-router-dom";
-import Select from "react-select";
+
 
 
 const baseURL = "http://localhost:8080";
@@ -93,7 +93,6 @@ const ClassSelect = () => {
           >
             <div className="flex justify-center w-full flex-wrap gap-8 animate-slideup">
               {classes.map((data) => (
-                //map遍歷每個classes的資料放到data
                 <div
                   key={data.id}
                   className="w-[290px] h-[310px] overflow-hidden bg-white rounded-[20px] shadow-md mb-8"
