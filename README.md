@@ -1,4 +1,4 @@
-# Plantmeet_Admin - 植遇後台管理系統
+# Plantmeet_Admin
 ![My Remote Image](https://i.imgur.com/BgufrSb.jpg)
 
 ## Project setup
