@@ -42,7 +42,7 @@ The back-end repository is: https://github.com/cevevtco/plantmeet_admin_server
 
 
 ### Server-Side:
-Rest API: 
+RESTful API:
 - Express server with 5 routes:
   - Product
   - Order
