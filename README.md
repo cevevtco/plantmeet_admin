@@ -2,7 +2,7 @@
 
 [![IMAGE ALT TEXT](https://i.imgur.com/BgufrSb.jpg)](https://www.youtube.com/watch?v=xWPXREDrK5M" "Plantmeet_Admin")
 
-<p align="center">(Click image for demo video ٩(｡・ω・｡)و)</p>
+<p align="center">Click image for demo video ٩(｡・ω・｡)و</p>
 
 
 
