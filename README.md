@@ -1,5 +1,7 @@
 # Plantmeet_Admin
-![My Remote Image](https://i.imgur.com/BgufrSb.jpg)
+
+[![IMAGE ALT TEXT](https://i.imgur.com/BgufrSb.jpg)](https://www.youtube.com/watch?v=xWPXREDrK5M" "Plantmeet_Admin")
+
 
 ## Project setup
 ```
